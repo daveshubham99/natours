@@ -11,8 +11,7 @@ const isLoggedOut = document.querySelector('.nav__el--logout');
 const updateUserForm = document.querySelector('.form-submit');
 const updatePasswordForm = document.querySelector('.form-updatePassword');
 const bookTourForm = document.querySelector('#book-btn');
-console.log('updatePasswordForm', updatePasswordForm)
-console.log('updateUserForm', updateUserForm)
+
 
 if (mapBox) {
     const locations = JSON.parse(mapBox.dataset.locations)
@@ -25,7 +24,7 @@ if (loginForm) {
         e.preventDefault();
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        console.log(email, password);
+
         login(email, password);
     }
     )
@@ -45,23 +44,23 @@ if (updateUserForm) {
         form.append('photo', document.getElementById('photo').files[0])
         // const email = document.getElementById('email').value;
         //const name = document.getElementById('name').value;
-        console.log(form)
+
         updateUser(form, '');
     });
 }
 
 if (updatePasswordForm) {
-    console.log('hey update password')
+
     updatePasswordForm.addEventListener('submit', async e => {
-        console.log("inside update password")
+
         e.preventDefault();
         const password = document.getElementById('password-current').value;
         const newPassword = document.getElementById('password').value;
         const confirmNewPassword = document.getElementById('password-confirm').value;
-        console.log(password, newPassword, confirmNewPassword)
+
         try {
             await updateUser({ password, confirmNewPassword, newPassword }, 'password');
-            console.log("Password updated");
+
         }
         catch (err) {
             console.log(err.message);
@@ -79,7 +78,6 @@ if (bookTourForm) {
     bookTourForm.addEventListener('click', e => {
         e.target.textContent = 'processing...'
         const { tourId } = e.target.dataset;
-        console.log(tourId)
         bookTour(tourId)
     })
 

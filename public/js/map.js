@@ -1,4 +1,4 @@
-console.log('hello from the client side')
+
 
 
 export const displayMap = (locations) => {

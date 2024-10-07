@@ -3,8 +3,7 @@ import { showAlert } from './alert'
 
 export const updateUser = async (data, type) => {
     try {
-        const url = type === 'password' ? 'http://127.0.0.1:3000/api/v1/users/updatePassword' : 'http://127.0.0.1:3000/api/v1/users/updateMe'
-        console.log('you have come to update user')
+        const url = type === 'password' ? '/api/v1/users/updatePassword' : '/api/v1/users/updateMe'
         const updatedUser = await axios({
             method: 'PATCH',
             url,                //api/v1/users/updateMe
@@ -16,6 +15,7 @@ export const updateUser = async (data, type) => {
         return updatedUser;
 
     } catch (err) {
-        console.log(err)
+        showAlert('error', err.message)
+
     }
 }

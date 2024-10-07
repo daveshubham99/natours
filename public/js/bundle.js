@@ -11145,17 +11145,16 @@ var login = exports.login = /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          console.log('redirecting to login');
-          _context.next = 4;
+          _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/login',
+            url: '/api/v1/users/login',
             data: {
               email: email,
               password: password
             }
           });
-        case 4:
+        case 3:
           res = _context.sent;
           if (res.data.status === 'success') {
             (0, _alert.showAlert)('success', 'logged in successfully');
@@ -11163,19 +11162,17 @@ var login = exports.login = /*#__PURE__*/function () {
               location.assign('/');
             }, 1500);
           }
-          console.log(res);
-          _context.next = 13;
+          _context.next = 10;
           break;
-        case 9:
-          _context.prev = 9;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           (0, _alert.showAlert)('error', _context.t0.response.data.message);
-          console.log(_context.t0.message);
-        case 13:
+        case 10:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 7]]);
   }));
   return function login(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -11188,31 +11185,28 @@ var logout = exports.logout = /*#__PURE__*/function () {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           _context2.prev = 0;
-          console.log('in logout');
-          _context2.next = 4;
+          _context2.next = 3;
           return (0, _axios.default)({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/v1/users/logout'
+            url: '/api/v1/users/logout'
           });
-        case 4:
+        case 3:
           res = _context2.sent;
-          console.log(res.data.message, res);
           if (res.data.message === 'success') {
             (0, _alert.showAlert)('success', 'logged out successfully');
             location.reload(true);
           }
-          _context2.next = 13;
+          _context2.next = 10;
           break;
-        case 9:
-          _context2.prev = 9;
+        case 7:
+          _context2.prev = 7;
           _context2.t0 = _context2["catch"](0);
           (0, _alert.showAlert)('error', _context2.t0.response.data.message);
-          console.log(_context2.t0.message);
-        case 13:
+        case 10:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 9]]);
+    }, _callee2, null, [[0, 7]]);
   }));
   return function logout() {
     return _ref2.apply(this, arguments);
@@ -11989,7 +11983,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.displayMap = void 0;
-console.log('hello from the client side');
 var displayMap = exports.displayMap = function displayMap(locations) {
   mapboxgl.accessToken = 'pk.eyJ1Ijoia2FwaWxkYXZlNiIsImEiOiJjbTFmeHBkc2MxbzcwMmxzNnZ1emxocmJpIn0.z2SqVXJV9sG89cSbxxI-Kg';
   var map = new mapboxgl.Map({
@@ -12018,30 +12011,29 @@ var updateUser = exports.updateUser = /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          url = type === 'password' ? 'http://127.0.0.1:3000/api/v1/users/updatePassword' : 'http://127.0.0.1:3000/api/v1/users/updateMe';
-          console.log('you have come to update user');
-          _context.next = 5;
+          url = type === 'password' ? '/api/v1/users/updatePassword' : '/api/v1/users/updateMe';
+          _context.next = 4;
           return (0, _axios.default)({
             method: 'PATCH',
             url: url,
             //api/v1/users/updateMe
             data: data
           });
-        case 5:
+        case 4:
           updatedUser = _context.sent;
           if (updatedUser) {
             (0, _alert.showAlert)('success', 'updated password');
           }
           return _context.abrupt("return", updatedUser);
-        case 10:
-          _context.prev = 10;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
-        case 13:
+          (0, _alert.showAlert)('error', _context.t0.message);
+        case 12:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return function updateUser(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -12071,7 +12063,7 @@ var bookTour = exports.bookTour = /*#__PURE__*/function () {
           _context.prev = 0;
           _context.next = 3;
           return (0, _axios.default)({
-            url: "http://127.0.0.1:3000/api/v1/bookings/checkoutSession/".concat(tourId)
+            url: "/api/v1/bookings/checkoutSession/".concat(tourId)
           });
         case 3:
           session = _context.sent;
@@ -12080,14 +12072,13 @@ var bookTour = exports.bookTour = /*#__PURE__*/function () {
             sessionId: session.data.session.id
           });
         case 6:
-          _context.next = 12;
+          _context.next = 11;
           break;
         case 8:
           _context.prev = 8;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
           (0, _alert.showAlert)('error', _context.t0);
-        case 12:
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -12244,8 +12235,6 @@ var isLoggedOut = document.querySelector('.nav__el--logout');
 var updateUserForm = document.querySelector('.form-submit');
 var updatePasswordForm = document.querySelector('.form-updatePassword');
 var bookTourForm = document.querySelector('#book-btn');
-console.log('updatePasswordForm', updatePasswordForm);
-console.log('updateUserForm', updateUserForm);
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
   (0, _map.displayMap)(locations);
@@ -12255,7 +12244,6 @@ if (loginForm) {
     e.preventDefault();
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    console.log(email, password);
     (0, _login.login)(email, password);
   });
 }
@@ -12273,51 +12261,47 @@ if (updateUserForm) {
     form.append('photo', document.getElementById('photo').files[0]);
     // const email = document.getElementById('email').value;
     //const name = document.getElementById('name').value;
-    console.log(form);
+
     (0, _updateUser.updateUser)(form, '');
   });
 }
 if (updatePasswordForm) {
-  console.log('hey update password');
   updatePasswordForm.addEventListener('submit', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
       var password, newPassword, confirmNewPassword;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            console.log("inside update password");
             e.preventDefault();
             password = document.getElementById('password-current').value;
             newPassword = document.getElementById('password').value;
             confirmNewPassword = document.getElementById('password-confirm').value;
-            console.log(password, newPassword, confirmNewPassword);
-            _context.prev = 6;
-            _context.next = 9;
+            _context.prev = 4;
+            _context.next = 7;
             return (0, _updateUser.updateUser)({
               password: password,
               confirmNewPassword: confirmNewPassword,
               newPassword: newPassword
             }, 'password');
-          case 9:
-            console.log("Password updated");
-            _context.next = 15;
+          case 7:
+            _context.next = 12;
             break;
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](4);
+            console.log(_context.t0.message);
           case 12:
             _context.prev = 12;
-            _context.t0 = _context["catch"](6);
-            console.log(_context.t0.message);
-          case 15:
-            _context.prev = 15;
             console.log('setting parameters');
             document.getElementById('password-current').value = ' ';
             document.getElementById('password-confirm').value = ' ';
             document.getElementById('password').value = ' ';
-            return _context.finish(15);
-          case 21:
+            return _context.finish(12);
+          case 18:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[6, 12, 15, 21]]);
+      }, _callee, null, [[4, 9, 12, 18]]);
     }));
     return function (_x) {
       return _ref.apply(this, arguments);
@@ -12328,7 +12312,6 @@ if (bookTourForm) {
   bookTourForm.addEventListener('click', function (e) {
     e.target.textContent = 'processing...';
     var tourId = e.target.dataset.tourId;
-    console.log(tourId);
     (0, _stripe.bookTour)(tourId);
   });
 }
@@ -12357,7 +12340,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52614" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52097" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

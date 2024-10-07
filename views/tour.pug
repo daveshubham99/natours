@@ -79,7 +79,6 @@ block content
   section.section-reviews
     .reviews
       each review in tour.reviews
-        -console.log(review.reviewRating)
         +review(review.User.photo,review.User.name,review.review,review.reviewRating)
 
   section.section-cta

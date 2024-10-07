@@ -24,6 +24,7 @@ const xss = require('xss-clean')
 const { default: helmet } = require('helmet');
 const viewRouter = require('./Routes/viewRouter')
 const hpp = require('hpp')
+const compression = require('compression')
 const bookingRoutes = require('./Routes/bookingRoutes')
 //variable
 const db = process.env.dataBase;
@@ -62,7 +63,7 @@ app.use(hpp(
 //middle ware
 //adds certain feilds to http header for the purpose of security
 app.use(helmet());
-
+app.user(compression());
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "default-src *; img-src * data:; script-src *; style-src *");
   next();
@@ -109,7 +110,6 @@ app.use(xss())
 app.use((req,res,next)=>
 {
     req.requestTime =new Date().toISOString;
-    console.log(req.cookies);
     next();
 })
 
