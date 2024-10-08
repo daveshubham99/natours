@@ -9,7 +9,7 @@ const handlerFactory = require('./../Controller/handlerfactory')
 exports.checkoutSession = createAsync(async (req, res, next) => {
     //1) get the tour related to id 
     const tour = await Tour.findById(req.params.tourId)
-    console.log(tour)
+
 
     //2) create a stripe session 
     const session = await stripe.checkout.sessions.create({
@@ -50,15 +50,13 @@ exports.checkoutSession = createAsync(async (req, res, next) => {
 
 })
 exports.bookingCheckout = catchAsync(async (req, res, next) => {
-    console.log("creating Booking................................................................")
     const { Tour, User, price } = req.query
-    console.log(req.query)
+
 
     if (!Tour && !User && !price) return next();
-    console.log(Tour, User, price)
+
     await Booking.create({ Tour, User, price })
-    console.log("booking created succesfully")
-    console.log(req)
+
     res.redirect(req.originalUrl.split('?')[0])
 
 

@@ -17,13 +17,13 @@ const signToken = id => {
 const sendResWithToken = (user, statusCode, req, res) => {
 
     const cookieOptions =
-
         user.password = undefined;
+    console.log(req, 'at restoken')
     const token = signToken(user._id);
     res.cookie('jwt', token, {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        secure: req.secure || req.headers('x-forwaded-proto') === 'https'
+        secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
     }
     )
     res.status(statusCode).json({
@@ -53,6 +53,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 //user will login through this method
 exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(req.body);
     if (!email || !password) {
         return next(new AppError('Please enter email and password', 400));
     }
@@ -61,7 +62,7 @@ exports.login = catchAsync(async (req, res, next) => {
     if (!user || !(await user.correctPassword(password, user.password))) {
         return next(new AppError(`Please enter a correct email or password - ${email},${password}`, 401));
     }
-
+    console.log(req)
     sendResWithToken(user, req, 201, res)
 })
 

@@ -84,7 +84,7 @@ userSchema.pre('save', async function (next) {
 })
 
 userSchema.methods.correctPassword = async function (candidatePassword, correctPassword) {
-    console.log(correctPassword, candidatePassword)
+
 
     return await bcrypt.compare(candidatePassword, correctPassword);
 
@@ -100,10 +100,10 @@ userSchema.methods.changedPasswordAfter = async function (JWTTimestamp) {
         const changedTimeStamp = parseInt(this.passwordChangeDate.getTime() / 1000, 10);
         console.log(changedTimeStamp, JWTTimestamp);
         const token = JWTTimestamp < changedTimeStamp
-        console.log(token);
+
         return token;
     }
-    console.log('init')
+
     return false;
 }
 userSchema.methods.createPasswordToken = function () {

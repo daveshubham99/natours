@@ -129,12 +129,13 @@ app.use((req,res,next)=>
 })
 
 //use to limit req on server
-const limiter = rateLimit ({
-  max:100,
-  windowMs:60*60*1000,
-  message:'you have crossed your request limit'
-})
-app.use('/api',limiter)
+//removing rate limiter due to trust proxy specification
+// const limiter = rateLimit ({
+//   max:100,
+//   windowMs:60*60*1000,
+//   message:'you have crossed your request limit'
+// })
+// app.use('/api',limiter)
 
 app.use('/api/v1/reviews', reviewRoutes)
 app.use('/',viewRouter)
