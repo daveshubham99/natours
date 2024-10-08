@@ -63,7 +63,7 @@ app.use(hpp(
 //middle ware
 //adds certain feilds to http header for the purpose of security
 app.use(helmet());
-app.user(compression());
+app.use(compression());
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "default-src *; img-src * data:; script-src *; style-src *");
   next();
