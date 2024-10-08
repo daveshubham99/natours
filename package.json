@@ -21,6 +21,7 @@
     "content-security-policy": "^0.3.4",
     "cookie-parser": "^1.4.6",
     "cookieparser": "^0.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-mongo-sanitize": "^2.2.0",

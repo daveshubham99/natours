@@ -26,6 +26,7 @@ const viewRouter = require('./Routes/viewRouter')
 const hpp = require('hpp')
 const compression = require('compression')
 const bookingRoutes = require('./Routes/bookingRoutes')
+const cors = require('cors');
 //variable
 const db = process.env.dataBase;
 PORT = process.env.PORT;
@@ -47,6 +48,20 @@ app.set('views', path.join(__dirname, 'views'))
 
 //defining my public file ref
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(cors());
+
+//if i want to allow speicfic webs 
+// app.use(cors(
+//{ options: wwww.appstoallow.com
+//}))
+
+
+//for req other than get and post we need to allow cors diffrently 
+
+app.options('*',cors())
+//for specific route than
+//app.options('/route/v1/anythin',cors())
+
 
 
 //content security policy 
