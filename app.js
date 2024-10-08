@@ -59,7 +59,7 @@ app.use(hpp(
     whitelist:['duration','ratingsAverage','ratingsQuantity','maxGroupSize','difficulty','price']
   }
 ))
-
+app.enable('trust proxy')
 //middle ware
 //adds certain feilds to http header for the purpose of security
 app.use(helmet());
@@ -150,7 +150,15 @@ process.on('unhandledRejection',err =>
       process.exit(1);
     });
 });
+//sigterm signal sent by heroku every 24 hour when it restarts the app to keep things healty
+process.on('SIGTERM',()=>
+{
+  console.log('SIGTERM recieved closing the app gracefully');
+  server.close(()=>         
+    console.log('closing app due to sigterm')
+)
 
+})
 
 
 //  app.all('*', (req, res, next) => {
